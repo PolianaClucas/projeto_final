@@ -1,30 +1,31 @@
 <div class="container mt-2">
-    <h1>Listagem de categorias</h1>
+    <h1>Listagem de Categorias</h1>
     <hr>
 
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>Ações</th>
+    
+    <table class="table table-hover table-responsive">
+        <thead>
+            <tr>
+                <th class="col-10">Nome</th>
+                 <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach($categorias as $categoria):?>
                 <tr>
-                    <td><?= $categoria['nome'] ?></td>
+                    <td><?php echo $categoria['nome'];?></td>
                     <td>
-                        <a href="http://" class="btn btn-danger" title="excluir">
+                        <a href="<?= base_url() ?>?c=categoria&m=excluir&id=<?php echo $categoria['idcategoria'];?>" class="btn btn-danger" tite="excluir">
                             <i class="fa-solid fa-trash-can"></i>
                         </a>
 
-                        <a href="http://" class="btn btn-primary" title="editar">
+                        <a href="http://" class="btn btn-primary" tite="editar">
                             <i class="fa-solid fa-pencil"></i>
                         </a>
+
                     </td>
                 </tr>
                 <?php endforeach;?>
             </tbody>
-        </table>
-
+    </table>
 </div>

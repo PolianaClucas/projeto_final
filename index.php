@@ -1,5 +1,5 @@
 <?php
-
+$base_url = "http://localhost/projeto_final/index.php";
 if(isset($_GET['c'])){
     $controller = ucfirst($_GET['c']);
     $path_controller = "controller/$controller.php";
@@ -17,5 +17,9 @@ if(isset($_GET['c'])){
     }
 }
 
+function base_url(){
+    global $base_url;
+    return $base_url;
+}
  
 ?>
