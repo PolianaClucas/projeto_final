@@ -1,6 +1,6 @@
 <?php
 
-    require "config/conexao.php";
+    require_once "config/conexao.php";
 
     class CategoriaModel{
         function __construct()
@@ -17,7 +17,7 @@
 
         function excluir($id){
             $sql = "DELETE FROM categoria WHERE idcategoria = ?";
-            $comando = $this->conexao->prepare("$sql");
+            $comando = $this->conexao->prepare($sql);
             $comando->bind_param("i", $id);
             return $comando->execute();
         }

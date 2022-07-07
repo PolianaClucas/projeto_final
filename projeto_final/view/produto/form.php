@@ -1,8 +1,8 @@
    <div class="container">
-      <h1>Cadastro de Categoria</h1>
+      <h1>Cadastro de Produto</h1>
       <hr>
 
-      <form method = "POST" action = "<?= base_url() . "?c=categoria&m=salvar"?>">
+      <form method = "POST" action = "<?= base_url() . "?c=produto&m=salvar"?>">
 
       <div class="mb-3">
          <label for="categoria" class="form-label">Nome</label>
