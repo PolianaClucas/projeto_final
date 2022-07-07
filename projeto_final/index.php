@@ -1,30 +1,22 @@
 <?php
-$base_url = "http://localhost/poliana/projeto_final/index.php";
 
+$base_url = 'http://localhost/poliana/projeto_final/index.php';
+$controlador = ucfirst($_GET['c'] ?? 'home');
+$metodo = $_GET['m'] ?? 'index';
 
-
-    $controlador_padrao = "categoria";
-    $controller = ucfirst($_GET['c'] ?? $controlador_padrao);
-    $path_controller = "controller/$controller.php"; //path_controller equivale à "caminho_controlador"
-    //nos códigos da video aula.
-
-    if(file_exists($path_controller)){
-        require_once $path_controller;
-
-            $metodo = $_GET['m'] ?? "index";
-            $obj = new $controller(); //A variável $obj equivale a $objcontroller dos videos
-            $id = $_GET['id'] ?? null;
-
-            if(is_callable(array($obj, $metodo))){
-                call_user_func_array(array($obj, $metodo), array($id));
-            }
-        
-    }
-
+$caminho_controlador = "controller/$controlador.php";
+if(file_exists($caminho_controlador)){
+    require $caminho_controlador;
+    $objController = new $controlador();
+    $id =$_GET['id'] ?? null;
+    if(is_callable(array($objController, $metodo))){
+        call_user_func_array(array($objController, $metodo), array($id));
+    };
+}
 
 function base_url(){
     global $base_url;
-    return $base_url;
+    return $base_url ;
 }
- 
+
 ?>
