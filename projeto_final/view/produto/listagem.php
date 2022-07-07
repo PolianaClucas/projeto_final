@@ -6,7 +6,7 @@
     <table class="table table-hover table-responsive">
         <thead>
             <tr>
-                <th>Nome</th>
+                <th class = "col-6">Nome</th>
                 <th>Preço</th>
                 <th>Marca</th>
                 <th>Foto</th>

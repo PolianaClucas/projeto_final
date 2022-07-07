@@ -1,10 +1,11 @@
 <?php
-
     require_once 'model/ProdutoModel.php';
+    require_once 'model/categoriaModel.php';
 
     class Produto{
         function __construct(){
             $this->model = new ProdutoModel();
+            $this->categoria_model = new CategoriaModel();
         }
 
         function index(){
@@ -16,6 +17,7 @@
         }
 
         function add(){
+            $categorias = $this->categoria_model->buscarTodos();
             include 'view/template/cabecalho.php';
             include 'view/template/menu.php';
             include 'view/produto/form.php';
@@ -23,7 +25,7 @@
         }
 
         function editar($id){ 
-            $categoria = $this->model->buscarPorId($id);
+            $produto = $this->model->buscarPorId($id);
             include 'view/template/cabecalho.php';
             include 'view/template/menu.php';
             include 'view/produto/form.php';
@@ -33,17 +35,31 @@
 
         function excluir($id){
             $this->model->excluir($id);
-            header('Location: ?c=categoria');
+            header('Location: ?c=produto');
         }
 
         function salvar(){
-            if(isset($_POST['categoria']) && !empty($_POST['categoria'])){
-                if(empty($_POST['idcategoria'])){
-                    $this->model->inserir($_POST['categoria']);
+            if(isset($_POST['nome']) && !empty($_POST['nome'])){
+                if(empty($_POST['idproduto'])){
+                    $this->model->inserir(
+                        $_POST['nome'], 
+                        $_POST['descricao'], 
+                        $_POST['preco'], 
+                        $_POST['marca'], 
+                        "hahaha.png", 
+                        $_POST['categoria']);
                 }else{
-                    $this->model->atualizar($_POST['categoria'], $_POST['idcategoria']);
+                    $this->model->atualizar(
+                        $_POST['idproduto'],
+                        $_POST['nome'], 
+                        $_POST['descricao'], 
+                        $_POST['preco'], 
+                        $_POST['marca'], 
+                        "hahaha.png", 
+                        $_POST['categoria']
+                    );
                 }
-                header('Location: ?c=categoria');
+                header('Location: ?c=produto');
             }else{
                 echo "Ocorreu um erro, pois os dados não foram enviados.";
             }
